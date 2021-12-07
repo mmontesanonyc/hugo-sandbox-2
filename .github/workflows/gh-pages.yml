@@ -1,4 +1,4 @@
-name: Auto build to docs
+name: Auto build to gh-pages
 
 on:
   push:
