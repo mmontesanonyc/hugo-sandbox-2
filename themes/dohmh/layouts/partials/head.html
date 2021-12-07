@@ -1,0 +1,43 @@
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Corrects IE Compatibility Mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>{{ block "title" . }}
+  {{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
+{{ end }}</title>
+{{ partial "seo" . }}
+
+<!-- jQuery (full, compressed version) -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+{{ if eq .Page.Section "neighborhood_reports"}}
+
+<!-- Site specific JS -->
+{{ $js := resources.Get "js/site.js" | js.Build (dict "params" (dict "devpath" $.Site.Params.devpath)) }}
+{{/*  {{ $js := resources.Get "js/site.js" }}  */}}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{ end }}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/fontawesome/css/all.min.css">
+{{ $sass := resources.Get "scss/theme.scss" }}
+{{ $style := $sass | resources.ToCSS }}
+<link rel="stylesheet" href="{{ $style.Permalink }}" />
+
+<!--Vega. To call, have vega: true in a page's frontmatter-->
+{{ if .Params.vega }}
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+{{ end }}
+
+<!-- Analytics placeholder -->
+{{ if eq (getenv "HUGO_ENV") "production" }} 
+<!--insert Analytics code here-->
+{{ end }} 
