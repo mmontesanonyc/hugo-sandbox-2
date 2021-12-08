@@ -1,6 +1,6 @@
 (() => {
   // ns-params:@params
-  var devpath = "/hugo-sandbox";
+  var devpath = "/hugo-sandbox-2";
 
   // <stdin>
   var indicatorDataPath = `${devpath}/visualizations/csv/`;
